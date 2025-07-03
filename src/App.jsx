@@ -11,6 +11,7 @@ import {
   useNodesState,
   useEdgesState,
   Panel,
+  Handle,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
@@ -49,6 +50,14 @@ const CoupleNode = ({ data }) => {
 
   return (
     <div style={nodeStyles.coupleNode}>
+      {/* Handle superior para conexión con padres */}
+      <Handle 
+        type="target" 
+        position="top" 
+        id="top" 
+        style={{ background: '#555', width: '12px', height: '12px' }} 
+      />
+      
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ ...nodeStyles.feminine, flex: 1, marginRight: "5px" }}>
           <div>
@@ -69,17 +78,36 @@ const CoupleNode = ({ data }) => {
           <div>Nac: {husband.fechaNacimiento}</div>
         </div>
       </div>
+      
+      {/* Handle inferior para conexión con hijos */}
+      <Handle 
+        type="source" 
+        position="bottom" 
+        id="bottom" 
+        style={{ background: '#555', width: '12px', height: '12px' }} 
+      />
     </div>
   );
 };
 
 // Componente personalizado para nodos individuales
 const PersonNode = ({ data }) => {
-  const style =
-    data.genero === "Masculino" ? nodeStyles.masculine : nodeStyles.feminine;
-
   return (
-    <div style={style}>
+    <div
+      style={
+        data.genero === "Masculino"
+          ? nodeStyles.masculine
+          : nodeStyles.feminine
+      }
+    >
+      {/* Handle superior para conexión con padres */}
+      <Handle 
+        type="target" 
+        position="top" 
+        id="top" 
+        style={{ background: '#555', width: '12px', height: '12px' }} 
+      />
+      
       <div>
         <strong>
           {data.nombre} {data.apellido1}
@@ -87,6 +115,14 @@ const PersonNode = ({ data }) => {
       </div>
       <div>Género: {data.genero}</div>
       <div>Nac: {data.fechaNacimiento}</div>
+      
+      {/* Handle inferior para conexión con hijos */}
+      <Handle 
+        type="source" 
+        position="bottom" 
+        id="bottom" 
+        style={{ background: '#555', width: '12px', height: '12px' }} 
+      />
     </div>
   );
 };
@@ -214,12 +250,24 @@ function buildFamilyTree(personas) {
       
       // Procesar cada hijo recursivamente
       if (hijosOrdenados.length > 0) {
-        const hijosAncho = hijosOrdenados.length * 250; // Espacio total para los hijos
-        const startX = x - (hijosAncho / 2) + 125; // Centrar los hijos bajo el padre
+        // Calcular espaciado basado en si los hijos tienen cónyuge
+        const hijosEspacios = hijosOrdenados.map(hijo => {
+          // Si el hijo tiene cónyuge, necesita más espacio
+          const tieneConyuge = hijo.relaciones?.some(rel => rel.tipo === "conyuge");
+          return tieneConyuge ? 350 : 250; // Más espacio para los que tienen cónyuge
+        });
         
+        // Calcular ancho total y posición inicial
+        const hijosAncho = hijosEspacios.reduce((sum, espacio) => sum + espacio, 0);
+        let startX = x - (hijosAncho / 2);
+        
+        // Posicionar cada hijo
+        let currentX = startX;
         hijosOrdenados.forEach((hijo, index) => {
-          const childX = startX + (index * 250); // Espaciado horizontal de 250px
-          const childY = y + 150; // 150px más abajo que los padres
+          const espacio = hijosEspacios[index];
+          const childX = currentX + (espacio / 2); // Centrar en su espacio asignado
+          const childY = y + 200; // Mayor distancia vertical para mejor visualización
+          currentX += espacio; // Actualizar posición para el siguiente hijo
           
           const childNodeId = processNode(hijo, childX, childY, level + 1);
           
@@ -229,7 +277,11 @@ function buildFamilyTree(personas) {
               id: `edge-${nodeId}-${childNodeId}`,
               source: nodeId,
               target: childNodeId,
+              sourceHandle: "bottom",
+              targetHandle: "top",
               type: "smoothstep",
+              markerEnd: { type: 'arrow' },
+              style: { strokeWidth: 2 },
             });
           }
         });
@@ -265,7 +317,11 @@ function buildFamilyTree(personas) {
               id: `edge-${nodeId}-${childNodeId}`,
               source: nodeId,
               target: childNodeId,
+              sourceHandle: "bottom",
+              targetHandle: "top",
               type: "smoothstep",
+              markerEnd: { type: 'arrow' },
+              style: { strokeWidth: 2 },
             });
           }
         });
