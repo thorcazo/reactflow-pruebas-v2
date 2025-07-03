@@ -1,0 +1,138 @@
+{
+  "Nombre": "Familia Pérez Gómez",
+  "personas": [
+    {
+      "id": 1,
+      "nombre": "Juan",
+      "apellido1": "Pérez",
+      "apellido2": "Rodríguez",
+      "activo": true,
+      "biografia": "Biografía de Juan.",
+      "fechaNacimiento": "1940-05-15",
+      "fechaDefuncion": "2021-02-10",
+      "relaciones": [{ "tipo": "conyuge", "idRelacion": 2 }]
+    },
+    {
+      "id": 2,
+      "nombre": "Carmen",
+      "apellido1": "Gómez",
+      "apellido2": "Martínez",
+      "activo": true,
+      "biografia": "Biografía de Carmen.",
+      "fechaNacimiento": "1942-07-20",
+      "fechaDefuncion": null,
+      "relaciones": [{ "tipo": "conyuge", "idRelacion": 1 }]
+    },
+    {
+      "id": 3,
+      "nombre": "Carlos",
+      "apellido1": "Pérez",
+      "apellido2": "Gómez",
+      "activo": true,
+      "biografia": "Biografía de Carlos.",
+      "fechaNacimiento": "1970-03-10",
+      "fechaDefuncion": null,
+      "relaciones": [
+        { "tipo": "progenitor", "idRelacion": 1 },
+        { "tipo": "progenitor", "idRelacion": 2 },
+        { "tipo": "conyuge", "idRelacion": 6 }
+      ]
+    },
+    {
+      "id": 4,
+      "nombre": "María",
+      "apellido1": "Pérez",
+      "apellido2": "Gómez",
+      "activo": true,
+      "biografia": "María, psicóloga y hermana de Carlos.",
+      "fechaNacimiento": "1972-08-05",
+      "fechaDefuncion": null,
+      "relaciones": [
+        { "tipo": "progenitor", "idRelacion": 1 },
+        { "tipo": "progenitor", "idRelacion": 2 },
+        { "tipo": "hermano", "idRelacion": 3 },
+        { "tipo": "hermano", "idRelacion": 5 }
+      ]
+    },
+    {
+      "id": 5,
+      "nombre": "Alejandro",
+      "apellido1": "Pérez",
+      "apellido2": "Gómez",
+      "activo": true,
+      "biografia": "Alejandro, arquitecto y hermano de Carlos y María.",
+      "fechaNacimiento": "1975-11-22",
+      "fechaDefuncion": null,
+      "relaciones": [
+        { "tipo": "progenitor", "idRelacion": 1 },
+        { "tipo": "progenitor", "idRelacion": 2 },
+        { "tipo": "hermano", "idRelacion": 3 },
+        { "tipo": "hermano", "idRelacion": 4 }
+      ]
+    },
+    {
+      "id": 6,
+      "nombre": "Laura",
+      "apellido1": "López",
+      "apellido2": "Ruiz",
+      "activo": true,
+      "biografia": "Laura, ingeniera de software y esposa de Carlos.",
+      "fechaNacimiento": "1972-09-17",
+      "fechaDefuncion": null,
+      "relaciones": [{ "tipo": "conyuge", "idRelacion": 3 }]
+    },
+    {
+      "id": 7,
+      "nombre": "Lucía",
+      "apellido1": "Pérez",
+      "apellido2": "López",
+      "activo": true,
+      "biografia": "Lucía, estudiante de medicina y primogénita de Carlos y Laura.",
+      "fechaNacimiento": "2000-02-14",
+      "fechaDefuncion": null,
+      "relaciones": [
+        { "tipo": "progenitor", "idRelacion": 3 },
+        { "tipo": "progenitor", "idRelacion": 6 }
+      ]
+    },
+    {
+      "id": 8,
+      "nombre": "Miguel",
+      "apellido1": "Pérez",
+      "apellido2": "López",
+      "activo": true,
+      "biografia": "Miguel, estudiante de ingeniería y hijo menor de Carlos y Laura.",
+      "fechaNacimiento": "2003-07-30",
+      "fechaDefuncion": null,
+      "relaciones": [
+        { "tipo": "progenitor", "idRelacion": 3 },
+        { "tipo": "progenitor", "idRelacion": 6 }
+      ]
+    },
+    {
+      "id": 9,
+      "nombre": "Pablo",
+      "apellido1": "Sánchez",
+      "apellido2": "Torres",
+      "activo": true,
+      "biografia": "Pablo, médico y esposo de María.",
+      "fechaNacimiento": "1970-04-02",
+      "fechaDefuncion": null,
+      "relaciones": [{ "tipo": "conyuge", "idRelacion": 4 }]
+    },
+    {
+      "id": 10,
+      "nombre": "Sara",
+      "apellido1": "Sánchez",
+      "apellido2": "Pérez",
+      "activo": true,
+      "biografia": "Sara, fotógrafa y única hija de María y Pablo.",
+      "fechaNacimiento": "1998-12-05",
+      "fechaDefuncion": null,
+      "relaciones": [
+        { "tipo": "progenitor", "idRelacion": 4 },
+        { "tipo": "progenitor", "idRelacion": 9 }
+      ]
+    }
+  ]
+}
