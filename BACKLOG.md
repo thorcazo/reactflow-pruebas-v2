@@ -44,7 +44,7 @@ Este documento rastrea las mejoras futuras, optimizaciones técnicas y posibles 
 
 - **[BUG-001] Referencias Circulares**
   - *Descripción*: El algoritmo actual podría entrar en bucle infinito si existen referencias circulares en las relaciones (ej. error en datos donde A es padre de B y B es padre de A). Necesita validación previa.
-  - *Estado*: Pendiente de validación.
+  - *Estado*: Corregido. Se implementó detección de ciclos en `buildFamilyTree`.
 
 - **[BUG-002] Superposición de Ramas**
   - *Descripción*: En familias muy extensas horizontalmente, algunas ramas lejanas podrían superponerse visualmente en el modo automático.
