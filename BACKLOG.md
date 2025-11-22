@@ -20,6 +20,15 @@ Este documento rastrea las mejoras futuras, optimizaciones técnicas y posibles 
   - *Descripción*: Al hacer clic en un nodo, mostrar un modal con información detallada (biografía, fotos adicionales, fechas completas).
   - *Prioridad*: Baja
 
+- **[FEAT-005] Mejorar tipografia y posicion de elementos en la pizzara del arbol**
+  - *Descripción*: Mejorar la tipografía y la posición de los elementos en la pizarra del árbol.Tipo OpenSans. Tamaño de fuente adecuado
+  - *Prioridad*: Baja
+
+- **[FEAT-006] Mejorar visual. Minimalista**
+  - *Descripción*: Mejorar la visualidad del árbol. Minimalista. Con colores mas elegantes.  
+  - *Prioridad*: Baja
+
+
 ## 🎨 Experiencia de Usuario (UX/UI)
 
 - **[UX-001] Diseño Responsivo Móvil**
