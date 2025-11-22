@@ -299,11 +299,11 @@ function App() {
         color: darkMode ? '#e2e8f0' : '#2c3e50',
         letterSpacing: "-0.5px"
       }}>
-        Relaciones Familiares - Cónyuges
+
       </h1>
 
       {/* Control Panel Container */}
-      <div className="control-panel" style={{ position: 'absolute', top: '20px', left: '20px', zIndex: 4, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      <div className="control-panel" style={{ position: 'absolute', top: '20px', left: '20px', zIndex: 4, display: 'flex', flexDirection: 'row', gap: '10px' }}>
         {/* Selector de modo manual/automático */}
         <div
           style={{
