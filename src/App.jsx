@@ -7,6 +7,9 @@ import "./App.css";
 import { buildFamilyTree, nodeStyles } from "./utils/familytreebuild";
 import { nodeTypes } from "./components/FamilyTreeNodeTypes";
 
+// Components
+import MemberModal from "./components/MemberModal";
+
 // Importaciones de ReactFlow
 import {
   ReactFlow,
@@ -26,6 +29,11 @@ import "@xyflow/react/dist/style.css";
 
 
 function App() {
+  // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedMember, setSelectedMember] = useState(null);
+  const [familyData, setFamilyData] = useState(familiaData);
+
   // Estado para almacenar posiciones guardadas
   const [savedPositions, setSavedPositions] = useState({});
   // Estado para controlar si se ha movido algún nodo
@@ -45,7 +53,7 @@ function App() {
 
   // Estado para controlar qué dataset usar (normal o stress test)
   const [useStressTest, setUseStressTest] = useState(false);
-  const currentFamilyData = useStressTest ? familiaStressTest : familiaData;
+  const currentFamilyData = useStressTest ? familiaStressTest : familyData;
 
   // Dark mode state management
   const [darkMode, setDarkMode] = useState(() => {
@@ -63,6 +71,45 @@ function App() {
     }
     localStorage.setItem('darkMode', darkMode.toString());
   }, [darkMode]);
+
+  // Handle member modal save
+  const handleSaveMember = useCallback((memberData) => {
+    setFamilyData(prevData => {
+      const updatedPersonas = prevData.personas.map(p => 
+        p.id === memberData.id ? memberData : p
+      );
+
+      // If it's a new member, add it
+      if (!prevData.personas.find(p => p.id === memberData.id)) {
+        updatedPersonas.push(memberData);
+      }
+
+      const updatedData = { ...prevData, personas: updatedPersonas };
+      
+      // Save to localStorage
+      localStorage.setItem('familyData', JSON.stringify(updatedData));
+      
+      return updatedData;
+    });
+
+    setSelectedMember(null);
+    setIsModalOpen(false);
+  }, []);
+
+  // Handle edit member
+  const handleEditMember = useCallback((memberId) => {
+    const member = currentFamilyData.personas.find(p => p.id === parseInt(memberId));
+    if (member) {
+      setSelectedMember(member);
+      setIsModalOpen(true);
+    }
+  }, [currentFamilyData.personas]);
+
+  // Handle add new member
+  const handleAddMember = useCallback(() => {
+    setSelectedMember(null);
+    setIsModalOpen(true);
+  }, []);
 
 
   // Cargar posiciones guardadas al iniciar la aplicación
@@ -162,6 +209,11 @@ function App() {
       setLastMovedNode(node);
     }
   }, []);
+
+  // Handle node click to edit
+  const onNodeClick = useCallback((event, node) => {
+    handleEditMember(node.id);
+  }, [handleEditMember]);
 
   // Función para actualizar una posición específica en localStorage
   const updatePositionInLocalStorage = useCallback((nodeId, position) => {
@@ -440,6 +492,7 @@ function App() {
         edges={edges}
         onNodesChange={onNodesChange}
         onNodeDragStop={onNodeDragStop}
+        onNodeClick={onNodeClick}
         onEdgesChange={onEdgesChange}
         nodeTypes={nodeTypes}
         snapToGrid={true}
@@ -558,6 +611,53 @@ function App() {
           </Panel>
         )}
       </ReactFlow>
+
+      {/* Member Modal */}
+      <MemberModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedMember(null);
+        }}
+        onSave={handleSaveMember}
+        member={selectedMember}
+        allMembers={currentFamilyData.personas}
+      />
+
+      {/* Add Member Button */}
+      <button
+        onClick={handleAddMember}
+        style={{
+          position: 'fixed',
+          bottom: '30px',
+          right: '30px',
+          width: '60px',
+          height: '60px',
+          borderRadius: '50%',
+          backgroundColor: '#4CAF50',
+          color: 'white',
+          border: 'none',
+          fontSize: '28px',
+          cursor: 'pointer',
+          boxShadow: '0 4px 12px rgba(76, 175, 80, 0.4)',
+          zIndex: 999,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+        }}
+        onMouseEnter={(e) => {
+          e.target.style.transform = 'scale(1.1)';
+          e.target.style.boxShadow = '0 6px 16px rgba(76, 175, 80, 0.6)';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.transform = 'scale(1)';
+          e.target.style.boxShadow = '0 4px 12px rgba(76, 175, 80, 0.4)';
+        }}
+        title="Agregar nuevo miembro"
+      >
+        +
+      </button>
     </div>
   );
 }

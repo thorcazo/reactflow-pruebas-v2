@@ -7,7 +7,19 @@ export const CoupleNode = ({ data }) => {
   const { husband, wife } = data;
 
   return (
-    <div style={nodeStyles.coupleNode}>
+    <div style={{
+      ...nodeStyles.coupleNode,
+      cursor: 'pointer',
+      transition: 'transform 0.2s, box-shadow 0.2s'
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.transform = 'scale(1.05)';
+      e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.2)';
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.transform = 'scale(1)';
+      e.currentTarget.style.boxShadow = nodeStyles.coupleNode.boxShadow;
+    }}>
       {/* Handle superior para conexión con padres */}
       <Handle
         type="target"
@@ -68,11 +80,24 @@ export const CoupleNode = ({ data }) => {
 export const PersonNode = ({ data }) => {
   return (
     <div
-      style={
-        data.genero === "Masculino"
+      style={{
+        ...(data.genero === "Masculino"
           ? nodeStyles.masculine
-          : nodeStyles.feminine
-      }
+          : nodeStyles.feminine),
+        cursor: 'pointer',
+        transition: 'transform 0.2s, box-shadow 0.2s'
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'scale(1.05)';
+        e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.2)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'scale(1)';
+        const baseStyles = data.genero === "Masculino"
+          ? nodeStyles.masculine
+          : nodeStyles.feminine;
+        e.currentTarget.style.boxShadow = baseStyles.boxShadow;
+      }}
     >
       {/* Handle superior para conexión con padres */}
       <Handle
