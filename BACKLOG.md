@@ -48,4 +48,5 @@ Este documento rastrea las mejoras futuras, optimizaciones técnicas y posibles 
 
 - **[BUG-002] Superposición de Ramas**
   - *Descripción*: En familias muy extensas horizontalmente, algunas ramas lejanas podrían superponerse visualmente en el modo automático.
-  - *Estado*: Observado en datasets grandes.
+  - *Estado*: **Resuelto**. Se implementó un algoritmo mejorado que calcula recursivamente el ancho necesario para cada subárbol antes de posicionar los nodos, eliminando las superposiciones. Probado exitosamente con dataset de estrés de 50 personas en 4 generaciones.
+

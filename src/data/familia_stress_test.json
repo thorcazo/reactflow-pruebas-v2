@@ -1,0 +1,1047 @@
+{
+    "Nombre": "Familia Grande - Prueba de Estrés",
+    "personas": [
+        {
+            "id": 1,
+            "nombre": "Abuelo Patricio",
+            "apellido1": "Grande",
+            "apellido2": "Ramirez",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1930-01-15",
+            "fechaDefuncion": "2015-05-20",
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 2
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "nombre": "Abuela Rosa",
+            "apellido1": "Flores",
+            "apellido2": "Mendez",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1932-03-10",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 1
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "nombre": "Pedro",
+            "apellido1": "Grande",
+            "apellido2": "Flores",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1955-02-14",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 1
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 2
+                },
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 4
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "nombre": "Ana",
+            "apellido1": "Martinez",
+            "apellido2": "Lopez",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1957-06-20",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 3
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "nombre": "Luis",
+            "apellido1": "Grande",
+            "apellido2": "Flores",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1957-08-22",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 1
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 2
+                },
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 6
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "nombre": "Carmen",
+            "apellido1": "Ruiz",
+            "apellido2": "Sanchez",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1959-11-15",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 5
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "nombre": "Maria",
+            "apellido1": "Grande",
+            "apellido2": "Flores",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1960-04-10",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 1
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 2
+                },
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 8
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "nombre": "Roberto",
+            "apellido1": "Fernandez",
+            "apellido2": "Diaz",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1958-09-05",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 7
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "nombre": "Jorge",
+            "apellido1": "Grande",
+            "apellido2": "Flores",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1962-12-30",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 1
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 2
+                },
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 10
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "nombre": "Lucia",
+            "apellido1": "Torres",
+            "apellido2": "Vega",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1964-07-18",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 9
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "nombre": "Sofia",
+            "apellido1": "Grande",
+            "apellido2": "Flores",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1965-03-25",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 1
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 2
+                },
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 12
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "nombre": "Miguel",
+            "apellido1": "Herrera",
+            "apellido2": "Castro",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1963-01-12",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 11
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "nombre": "Diego",
+            "apellido1": "Grande",
+            "apellido2": "Flores",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1967-10-08",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 1
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 2
+                },
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 14
+                }
+            ]
+        },
+        {
+            "id": 14,
+            "nombre": "Elena",
+            "apellido1": "Morales",
+            "apellido2": "Perez",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1968-05-22",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 13
+                }
+            ]
+        },
+        {
+            "id": 15,
+            "nombre": "Carlos",
+            "apellido1": "Grande",
+            "apellido2": "Martinez",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1980-04-15",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 3
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 4
+                },
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 16
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "nombre": "Laura",
+            "apellido1": "Gomez",
+            "apellido2": "Silva",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1982-09-10",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 15
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "nombre": "Andrea",
+            "apellido1": "Grande",
+            "apellido2": "Martinez",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1982-11-20",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 3
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 4
+                },
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 18
+                }
+            ]
+        },
+        {
+            "id": 18,
+            "nombre": "Fernando",
+            "apellido1": "Ortiz",
+            "apellido2": "Ramos",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1980-07-05",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 17
+                }
+            ]
+        },
+        {
+            "id": 19,
+            "nombre": "Ricardo",
+            "apellido1": "Grande",
+            "apellido2": "Martinez",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1985-01-30",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 3
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 4
+                },
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 20
+                }
+            ]
+        },
+        {
+            "id": 20,
+            "nombre": "Patricia",
+            "apellido1": "Navarro",
+            "apellido2": "Campos",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1987-06-12",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 19
+                }
+            ]
+        },
+        {
+            "id": 21,
+            "nombre": "Javier",
+            "apellido1": "Grande",
+            "apellido2": "Ruiz",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1981-03-08",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 5
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 6
+                },
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 22
+                }
+            ]
+        },
+        {
+            "id": 22,
+            "nombre": "Monica",
+            "apellido1": "Reyes",
+            "apellido2": "Luna",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1983-12-15",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 21
+                }
+            ]
+        },
+        {
+            "id": 23,
+            "nombre": "Valentina",
+            "apellido1": "Grande",
+            "apellido2": "Ruiz",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1983-08-25",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 5
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 6
+                },
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 24
+                }
+            ]
+        },
+        {
+            "id": 24,
+            "nombre": "Alejandro",
+            "apellido1": "Vargas",
+            "apellido2": "Medina",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1981-02-18",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 23
+                }
+            ]
+        },
+        {
+            "id": 25,
+            "nombre": "Nicolas",
+            "apellido1": "Grande",
+            "apellido2": "Ruiz",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1986-05-10",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 5
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 6
+                },
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 26
+                }
+            ]
+        },
+        {
+            "id": 26,
+            "nombre": "Isabella",
+            "apellido1": "Cruz",
+            "apellido2": "Romero",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1988-10-30",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 25
+                }
+            ]
+        },
+        {
+            "id": 27,
+            "nombre": "Gabriel",
+            "apellido1": "Fernandez",
+            "apellido2": "Grande",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1982-07-15",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 7
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 8
+                },
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 28
+                }
+            ]
+        },
+        {
+            "id": 28,
+            "nombre": "Camila",
+            "apellido1": "Paz",
+            "apellido2": "Soto",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1984-11-22",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 27
+                }
+            ]
+        },
+        {
+            "id": 29,
+            "nombre": "Daniela",
+            "apellido1": "Fernandez",
+            "apellido2": "Grande",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1985-04-08",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 7
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 8
+                },
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 30
+                }
+            ]
+        },
+        {
+            "id": 30,
+            "nombre": "Sebastian",
+            "apellido1": "Molina",
+            "apellido2": "Blanco",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1983-01-25",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 29
+                }
+            ]
+        },
+        {
+            "id": 31,
+            "nombre": "Mateo",
+            "apellido1": "Grande",
+            "apellido2": "Torres",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1987-09-12",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 9
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 10
+                },
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 32
+                }
+            ]
+        },
+        {
+            "id": 32,
+            "nombre": "Valeria",
+            "apellido1": "Jimenez",
+            "apellido2": "Gutierrez",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1989-02-28",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 31
+                }
+            ]
+        },
+        {
+            "id": 33,
+            "nombre": "Santiago",
+            "apellido1": "Grande",
+            "apellido2": "Torres",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1989-12-05",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 9
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 10
+                },
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 34
+                }
+            ]
+        },
+        {
+            "id": 34,
+            "nombre": "Martina",
+            "apellido1": "Acosta",
+            "apellido2": "Nunez",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1991-06-18",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 33
+                }
+            ]
+        },
+        {
+            "id": 35,
+            "nombre": "Emilia",
+            "apellido1": "Herrera",
+            "apellido2": "Grande",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1988-10-20",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 11
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 12
+                },
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 36
+                }
+            ]
+        },
+        {
+            "id": 36,
+            "nombre": "Leonardo",
+            "apellido1": "Pena",
+            "apellido2": "Rios",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1986-03-14",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 35
+                }
+            ]
+        },
+        {
+            "id": 37,
+            "nombre": "Benjamin",
+            "apellido1": "Grande",
+            "apellido2": "Morales",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1990-07-22",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 13
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 14
+                },
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 38
+                }
+            ]
+        },
+        {
+            "id": 38,
+            "nombre": "Renata",
+            "apellido1": "Cabrera",
+            "apellido2": "Mendoza",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "1992-11-08",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "conyuge",
+                    "idRelacion": 37
+                }
+            ]
+        },
+        {
+            "id": 39,
+            "nombre": "Emma",
+            "apellido1": "Grande",
+            "apellido2": "Gomez",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "2005-03-15",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 15
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 16
+                }
+            ]
+        },
+        {
+            "id": 40,
+            "nombre": "Lucas",
+            "apellido1": "Grande",
+            "apellido2": "Gomez",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "2007-08-20",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 15
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 16
+                }
+            ]
+        },
+        {
+            "id": 41,
+            "nombre": "Olivia",
+            "apellido1": "Grande",
+            "apellido2": "Gomez",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "2010-12-10",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 15
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 16
+                }
+            ]
+        },
+        {
+            "id": 42,
+            "nombre": "Matias",
+            "apellido1": "Ortiz",
+            "apellido2": "Grande",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "2006-05-18",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 17
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 18
+                }
+            ]
+        },
+        {
+            "id": 43,
+            "nombre": "Sofia",
+            "apellido1": "Ortiz",
+            "apellido2": "Grande",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "2008-09-25",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 17
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 18
+                }
+            ]
+        },
+        {
+            "id": 44,
+            "nombre": "Thiago",
+            "apellido1": "Grande",
+            "apellido2": "Navarro",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "2009-02-14",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 19
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 20
+                }
+            ]
+        },
+        {
+            "id": 45,
+            "nombre": "Mia",
+            "apellido1": "Grande",
+            "apellido2": "Navarro",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "2011-07-22",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 19
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 20
+                }
+            ]
+        },
+        {
+            "id": 46,
+            "nombre": "Samuel",
+            "apellido1": "Grande",
+            "apellido2": "Reyes",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "2007-11-30",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 21
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 22
+                }
+            ]
+        },
+        {
+            "id": 47,
+            "nombre": "Amelia",
+            "apellido1": "Grande",
+            "apellido2": "Reyes",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "2010-04-12",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 21
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 22
+                }
+            ]
+        },
+        {
+            "id": 48,
+            "nombre": "Daniel",
+            "apellido1": "Vargas",
+            "apellido2": "Grande",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "2008-08-05",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 23
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 24
+                }
+            ]
+        },
+        {
+            "id": 49,
+            "nombre": "Victoria",
+            "apellido1": "Vargas",
+            "apellido2": "Grande",
+            "genero": "Femenino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "2011-01-18",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 23
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 24
+                }
+            ]
+        },
+        {
+            "id": 50,
+            "nombre": "Adrian",
+            "apellido1": "Grande",
+            "apellido2": "Cruz",
+            "genero": "Masculino",
+            "activo": true,
+            "biografia": 1,
+            "fechaNacimiento": "2012-06-08",
+            "fechaDefuncion": null,
+            "relaciones": [
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 25
+                },
+                {
+                    "tipo": "progenitor",
+                    "idRelacion": 26
+                }
+            ]
+        }
+    ]
+}

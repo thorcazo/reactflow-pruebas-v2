@@ -35,8 +35,7 @@ export const parseFechaNacimiento = (fechaStr) => {
 };
 
 
-// Función para calcular posiciones de nodos en base a algoritmo recursivo
-// Aqui se define la funcion para calcular las posiciones de los nodos en base a algoritmo recursivo
+// Función para calcular posiciones de nodos en base a algoritmo recursivo mejorado
 function buildFamilyTree(personas) {
   // Map para acceder rápidamente a las personas por ID
   const personasMap = new Map();
@@ -54,6 +53,9 @@ function buildFamilyTree(personas) {
   // Arreglos para nodos y edges
   const nodes = [];
   const edges = [];
+
+  // Mapa para almacenar el ancho calculado de cada subárbol
+  const subtreeWidths = new Map();
 
   // Encontrar las raíces del árbol (personas sin progenitores)
   const findRoots = () => {
@@ -99,7 +101,59 @@ function buildFamilyTree(personas) {
     });
   };
 
-  // Función recursiva para construir el árbol
+  // NUEVA FUNCIÓN: Calcular recursivamente el ancho necesario para un subárbol
+  const calculateSubtreeWidth = (persona) => {
+    if (!persona) return 0;
+
+    const conyuge = findConyuge(persona);
+    let nodeKey;
+
+    if (conyuge) {
+      nodeKey = `couple-${[persona.id, conyuge.id].sort().join("-")}`;
+    } else {
+      nodeKey = `person-${persona.id}`;
+    }
+
+    // Si ya calculamos el ancho de este subárbol, devolverlo
+    if (subtreeWidths.has(nodeKey)) {
+      return subtreeWidths.get(nodeKey);
+    }
+
+    // Obtener todos los hijos
+    let allHijos = [];
+    if (conyuge) {
+      const hijosPersona = findHijos(persona.id);
+      const hijosConyuge = findHijos(conyuge.id);
+      const allHijosIds = new Set([...hijosPersona.map(h => h.id), ...hijosConyuge.map(h => h.id)]);
+      allHijos = [...allHijosIds].map(id => personasMap.get(id));
+    } else {
+      allHijos = findHijos(persona.id);
+    }
+
+    if (allHijos.length === 0) {
+      // Nodo hoja: ancho mínimo
+      const width = conyuge ? nodeStyles.coupleNode.width : nodeStyles.masculine.width;
+      subtreeWidths.set(nodeKey, width + 100); // Agregar margen
+      return width + 100;
+    }
+
+    // Calcular el ancho total sumando los anchos de todos los subárboles de los hijos
+    let totalChildrenWidth = 0;
+    allHijos.forEach(hijo => {
+      totalChildrenWidth += calculateSubtreeWidth(hijo);
+    });
+
+    // El ancho del subárbol es el máximo entre:
+    // 1. El ancho del nodo actual
+    // 2. La suma de los anchos de los hijos
+    const nodeWidth = conyuge ? nodeStyles.coupleNode.width : nodeStyles.masculine.width;
+    const subtreeWidth = Math.max(nodeWidth + 100, totalChildrenWidth);
+
+    subtreeWidths.set(nodeKey, subtreeWidth);
+    return subtreeWidth;
+  };
+
+  // Función recursiva para construir el árbol con espaciado mejorado
   const processNode = (persona, x, y, level = 0) => {
     if (!persona) return null;
 
@@ -154,26 +208,25 @@ function buildFamilyTree(personas) {
         return fechaA - fechaB;
       });
 
-      // Procesar cada hijo recursivamente
+      // Procesar cada hijo recursivamente con el nuevo algoritmo
       if (hijosOrdenados.length > 0) {
-        // Calcular espaciado basado en si los hijos tienen cónyuge
-        const hijosEspacios = hijosOrdenados.map(hijo => {
-          // Si el hijo tiene cónyuge, necesita más espacio
-          const tieneConyuge = hijo.relaciones?.some(rel => rel.tipo === "conyuge");
-          return tieneConyuge ? nodeStyles.masculine.width + 450 : nodeStyles.masculine.width + 50; // Más espacio para los que tienen cónyuge
-        });
+        // MEJORA: Calcular el ancho de cada subárbol hijo
+        const hijosConAnchos = hijosOrdenados.map(hijo => ({
+          hijo,
+          ancho: calculateSubtreeWidth(hijo)
+        }));
 
-        // Calcular ancho total y posición inicial
-        const hijosAncho = hijosEspacios.reduce((sum, espacio) => sum + espacio, 0);
-        let startX = x - (hijosAncho / 2);
+        // Calcular ancho total necesario
+        const totalWidth = hijosConAnchos.reduce((sum, item) => sum + item.ancho, 0);
+
+        // Posición inicial centrada respecto al padre
+        let currentX = x - (totalWidth / 2);
 
         // Posicionar cada hijo
-        let currentX = startX;
-        hijosOrdenados.forEach((hijo, index) => {
-          const espacio = hijosEspacios[index];
-          const childX = currentX + (espacio / 2); // Centrar en su espacio asignado
-          const childY = y + 200; // Mayor distancia vertical para mejor visualización
-          currentX += espacio; // Actualizar posición para el siguiente hijo
+        hijosConAnchos.forEach(({ hijo, ancho }) => {
+          // Centrar el hijo en su espacio asignado
+          const childX = currentX + (ancho / 2);
+          const childY = y + 250; // Espaciado vertical aumentado
 
           const childNodeId = processNode(hijo, childX, childY, level + 1);
 
@@ -190,6 +243,9 @@ function buildFamilyTree(personas) {
               style: { strokeWidth: 2 },
             });
           }
+
+          // Avanzar a la siguiente posición
+          currentX += ancho;
         });
       }
     } else {
@@ -220,12 +276,18 @@ function buildFamilyTree(personas) {
       const hijos = findHijos(persona.id);
 
       if (hijos.length > 0) {
-        const hijosAncho = hijos.length * 250;
-        const startX = x - (hijosAncho / 2) + 125;
+        // MEJORA: Usar el mismo sistema de cálculo de ancho para personas sin cónyuge
+        const hijosConAnchos = hijos.map(hijo => ({
+          hijo,
+          ancho: calculateSubtreeWidth(hijo)
+        }));
 
-        hijos.forEach((hijo, index) => {
-          const childX = startX + (index * 250);
-          const childY = y + 150;
+        const totalWidth = hijosConAnchos.reduce((sum, item) => sum + item.ancho, 0);
+        let currentX = x - (totalWidth / 2);
+
+        hijosConAnchos.forEach(({ hijo, ancho }) => {
+          const childX = currentX + (ancho / 2);
+          const childY = y + 200;
 
           const childNodeId = processNode(hijo, childX, childY, level + 1);
 
@@ -241,6 +303,8 @@ function buildFamilyTree(personas) {
               style: { strokeWidth: 2 },
             });
           }
+
+          currentX += ancho;
         });
       }
     }
@@ -248,29 +312,47 @@ function buildFamilyTree(personas) {
     return nodeId;
   };
 
-  // Procesar cada raíz del árbol
+  // Calcular anchos de subárbol para todas las raíces primero
+  roots.forEach(root => {
+    calculateSubtreeWidth(root);
+  });
+
+  // Procesar cada raíz del árbol con mejor distribución
   if (roots.length > 0) {
-    const rootsWidth = roots.length * 400;
-    let startX = 100;
+    // Calcular el ancho total necesario para todas las raíces
+    const rootsWithWidths = roots
+      .filter(root => !peopleInCoupleNodes.has(root.id))
+      .map(root => ({
+        root,
+        width: calculateSubtreeWidth(root)
+      }));
 
-    // Si hay múltiples raíces, distribuirlas horizontalmente
-    if (roots.length > 1) {
-      startX = (window.innerWidth / 2) - (rootsWidth / 2) + 200;
-    }
+    const totalRootsWidth = rootsWithWidths.reduce((sum, item) => sum + item.width, 0);
 
-    roots.forEach((root, index) => {
-      // Solo procesar si no es parte de un nodo de pareja ya procesado
-      if (!peopleInCoupleNodes.has(root.id)) {
-        processNode(root, startX + (index * 400), 100);
-      }
+    // Centrar el árbol completo en la pantalla
+    let startX = (window.innerWidth / 2) - (totalRootsWidth / 2);
+
+    rootsWithWidths.forEach(({ root, width }) => {
+      const rootX = startX + (width / 2);
+      processNode(root, rootX, 100);
+      startX += width;
     });
   } else {
     // Si no se encuentran raíces, procesar todos como nodos independientes
-    personas.forEach((persona, index) => {
-      // Solo procesar si no es parte de un nodo de pareja ya procesado
-      if (!peopleInCoupleNodes.has(persona.id)) {
-        processNode(persona, 100 + (index * 300), 100);
-      }
+    const independientes = personas.filter(persona => !peopleInCoupleNodes.has(persona.id));
+
+    const independientesConAnchos = independientes.map(persona => ({
+      persona,
+      width: calculateSubtreeWidth(persona)
+    }));
+
+    const totalWidth = independientesConAnchos.reduce((sum, item) => sum + item.width, 0);
+    let startX = (window.innerWidth / 2) - (totalWidth / 2);
+
+    independientesConAnchos.forEach(({ persona, width }) => {
+      const x = startX + (width / 2);
+      processNode(persona, x, 100);
+      startX += width;
     });
   }
 
