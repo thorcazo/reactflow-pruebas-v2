@@ -136,6 +136,21 @@ function App() {
   // Estado para nodos y conexiones
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [reactFlowInstance, setReactFlowInstance] = useState(null);
+
+  // Update nodes and edges when dataset changes
+  useEffect(() => {
+    setNodes(initialNodes);
+    setEdges(initialEdges);
+  }, [initialNodes, initialEdges, setNodes, setEdges]);
+
+  // Fit view after dataset (nodes) change
+  useEffect(() => {
+    if (reactFlowInstance) {
+      const timer = setTimeout(() => reactFlowInstance.fitView({ padding: 0.1 }), 100);
+      return () => clearTimeout(timer);
+    }
+  }, [initialNodes, reactFlowInstance]);
 
   // Detector de cambios en nodos - se ejecuta después de que onNodesChange haya procesado los cambios
   const onNodeDragStop = useCallback((event, node) => {
@@ -287,145 +302,136 @@ function App() {
         Relaciones Familiares - Cónyuges
       </h1>
 
-      {/* Selector de modo manual/automático */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '20px',
-          left: '20px',
-          zIndex: 4,
-          padding: '12px 14px',
-          background: 'rgba(255, 255, 255, 0.95)',
-          border: '0.5px solid #e0e0e0',
-          borderRadius: '8px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px',
-          fontSize: '14px',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
-          backdropFilter: 'blur(10px)'
-        }}
-      >
-        <span>Modo:</span>
-        <label className="switch" style={{ position: 'relative', display: 'inline-block', width: '60px', height: '30px' }}>
-          <input
-            type="checkbox"
-            checked={manualMode}
-            onChange={() => setManualMode(!manualMode)}
-            style={{ opacity: 0, width: 0, height: 0 }}
-          />
-          <span style={{
-            position: 'absolute',
-            cursor: 'pointer',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: manualMode ? '#2196F3' : '#ccc',
-            transition: '.4s',
-            borderRadius: '30px'
-          }}>
-            <span style={{
-              position: 'absolute',
-              content: '""',
-              height: '22px',
-              width: '22px',
-              left: manualMode ? '34px' : '4px',
-              bottom: '4px',
-              backgroundColor: 'white',
-              transition: '.4s',
-              borderRadius: '50%'
-            }} />
-          </span>
-        </label>
-        <span>{manualMode ? 'Manual' : 'Auto'}</span>
-      </div>
-
-      {/* Selector de dataset (Normal o Stress Test) */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '70px',
-          left: '20px',
-          zIndex: 4,
-          padding: '12px 14px',
-          background: useStressTest ? 'rgba(255, 243, 205, 0.95)' : 'rgba(255, 255, 255, 0.95)',
-          border: useStressTest ? '1px solid #ff9800' : '0.5px solid #e0e0e0',
-          borderRadius: '8px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px',
-          fontSize: '14px',
-          fontWeight: useStressTest ? 600 : 'normal',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
-          backdropFilter: 'blur(10px)'
-        }}
-      >
-        <span>Dataset:</span>
-        <button
-          onClick={() => {
-            setUseStressTest(!useStressTest);
-            // Limpiar posiciones guardadas al cambiar dataset
-            localStorage.removeItem('familyTreePositions');
-            setSavedPositions({});
-            setNodesMoved(false);
-          }}
+      {/* Control Panel Container */}
+      <div className="control-panel" style={{ position: 'absolute', top: '20px', left: '20px', zIndex: 4, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        {/* Selector de modo manual/automático */}
+        <div
           style={{
-            padding: '6px 16px',
-            background: useStressTest ? '#ff9800' : '#4CAF50',
-            color: 'white',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: 'pointer',
-            fontSize: '13px',
-            fontWeight: 500,
-            transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-          }}
-        >
-          {useStressTest ? '⚠️ Stress Test (50 personas)' : '✓ Normal (11 personas)'}
-        </button>
-      </div>
-
-      {/* Dark Mode Toggle */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '120px',
-          left: '20px',
-          zIndex: 4,
-          padding: '12px 14px',
-          background: darkMode ? 'rgba(45, 55, 72, 0.95)' : 'rgba(255, 255, 255, 0.95)',
-          border: darkMode ? '0.5px solid #4a5568' : '0.5px solid #e0e0e0',
-          borderRadius: '8px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px',
-          fontSize: '14px',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
-          backdropFilter: 'blur(10px)',
-          color: darkMode ? '#e2e8f0' : '#333'
-        }}
-      >
-        <span>Tema:</span>
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          style={{
-            padding: '6px 16px',
-            background: darkMode ? '#4a5568' : '#6366f1',
-            color: 'white',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: 'pointer',
-            fontSize: '13px',
-            fontWeight: 500,
-            transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+            padding: '12px 14px',
+            background: 'rgba(255, 255, 255, 0.95)',
+            border: '0.5px solid #e0e0e0',
+            borderRadius: '8px',
             display: 'flex',
             alignItems: 'center',
-            gap: '6px'
+            gap: '10px',
+            fontSize: '14px',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+            backdropFilter: 'blur(10px)'
           }}
         >
-          {darkMode ? '☀️ Claro' : '🌙 Oscuro'}
-        </button>
+          <span>Modo:</span>
+          <label className="switch" style={{ position: 'relative', display: 'inline-block', width: '60px', height: '30px' }}>
+            <input
+              type="checkbox"
+              checked={manualMode}
+              onChange={() => setManualMode(!manualMode)}
+              style={{ opacity: 0, width: 0, height: 0 }}
+            />
+            <span style={{
+              position: 'absolute',
+              cursor: 'pointer',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: manualMode ? '#2196F3' : '#ccc',
+              transition: '.4s',
+              borderRadius: '30px'
+            }}>
+              <span style={{
+                position: 'absolute',
+                content: '',
+                height: '22px',
+                width: '22px',
+                left: manualMode ? '34px' : '4px',
+                bottom: '4px',
+                backgroundColor: 'white',
+                transition: '.4s',
+                borderRadius: '50%'
+              }} />
+            </span>
+          </label>
+          <span>{manualMode ? 'Manual' : 'Auto'}</span>
+        </div>
+
+        {/* Selector de dataset (Normal o Stress Test) */}
+        <div
+          style={{
+            padding: '12px 14px',
+            background: useStressTest ? 'rgba(255, 243, 205, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+            border: useStressTest ? '1px solid #ff9800' : '0.5px solid #e0e0e0',
+            borderRadius: '8px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            fontSize: '14px',
+            fontWeight: useStressTest ? 600 : 'normal',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+            backdropFilter: 'blur(10px)'
+          }}
+        >
+          <span>Dataset:</span>
+          <button
+            onClick={() => {
+              setUseStressTest(!useStressTest);
+              // Limpiar posiciones guardadas al cambiar dataset
+              localStorage.removeItem('familyTreePositions');
+              setSavedPositions({});
+              setNodesMoved(false);
+            }}
+            style={{
+              padding: '6px 16px',
+              background: useStressTest ? '#ff9800' : '#4CAF50',
+              color: 'white',
+              border: 'none',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontSize: '13px',
+              fontWeight: 500,
+              transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+            }}
+          >
+            {useStressTest ? '⚠️ Stress Test (50 personas)' : '✓ Normal (11 personas)'}
+          </button>
+        </div>
+
+        {/* Dark Mode Toggle */}
+        <div
+          style={{
+            padding: '12px 14px',
+            background: darkMode ? 'rgba(45, 55, 72, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+            border: darkMode ? '0.5px solid #4a5568' : '0.5px solid #e0e0e0',
+            borderRadius: '8px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            fontSize: '14px',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+            backdropFilter: 'blur(10px)',
+            color: darkMode ? '#e2e8f0' : '#333'
+          }}
+        >
+          <span>Tema:</span>
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            style={{
+              padding: '6px 16px',
+              background: darkMode ? '#4a5568' : '#6366f1',
+              color: 'white',
+              border: 'none',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontSize: '13px',
+              fontWeight: 500,
+              transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+          >
+            {darkMode ? '☀️ Claro' : '🌙 Oscuro'}
+          </button>
+        </div>
       </div>
 
       <ReactFlow
@@ -438,6 +444,7 @@ function App() {
         nodeTypes={nodeTypes}
         snapToGrid={true}
         snapGrid={[120, 50]}
+        onInit={setReactFlowInstance}
         fitView
         defaultEdgeOptions={{
           style: {

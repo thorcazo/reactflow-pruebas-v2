@@ -43,6 +43,12 @@ Este documento rastrea las mejoras futuras, optimizaciones técnicas y posibles 
   - *Descripción*: Suavizar las transiciones al cambiar entre modo Manual y Automático.
   - *Prioridad*: Baja
 
+- **[UX-003] Elementos "Modo manual" y "Dataset", "Tema" Demasiado cerca y visualmente no correcto**
+  - *Descripción*: Elementos "Modo manual" y "Dataset", "Tema" Demasiado cerca y visualmente no correcto. Hay que meterlos dentro de un contenedor que los separe. Ademas "Relaciones Familiares" tambien esta por encima de todo estos elementos. 
+  - *Prioridad*: Baja
+  
+  
+
 ## 🔧 Refactorización y Optimización
 
 - **[REFACTOR-001] Optimización de Algoritmo**
@@ -63,3 +69,7 @@ Este documento rastrea las mejoras futuras, optimizaciones técnicas y posibles 
   - *Descripción*: En familias muy extensas horizontalmente, algunas ramas lejanas podrían superponerse visualmente en el modo automático.
   - *Estado*: **Resuelto**. Se implementó un algoritmo mejorado que calcula recursivamente el ancho necesario para cada subárbol antes de posicionar los nodos, eliminando las superposiciones. Probado exitosamente con dataset de estrés de 50 personas en 4 generaciones.
 
+- **[BUG-003] El boton de "Dataset" no funciona**
+  - *Descripción*: El boton de "Dataset" no funciona. Cuando pinchas no se visualiza el dataset normal y el dataset de estrés. Se debe cambiar cuando se pulse el boton.
+  - *Estado*: **Sin completar**. 
+  - *Prioridad*: Alta 
