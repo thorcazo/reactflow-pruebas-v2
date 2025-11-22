@@ -1,29 +1,38 @@
-// Estilos CSS para los nodos
+// Estilos CSS para los nodos - Diseño minimalista y elegante
 export const nodeStyles = {
   masculine: {
-    backgroundColor: "#d6e4ff",
-    color: "#000",
-    border: "1px solid #3c78d8",
-    borderRadius: "8px",
-    padding: "10px 15px",
+    backgroundColor: "#e8eef7", // Soft periwinkle - muted slate blue
+    color: "#2c3e50", // Dark slate for better readability
+    border: "0.5px solid #8fa3c4", // Subtle muted slate blue border
+    borderRadius: "10px", // Softer corners
+    padding: "12px 16px", // Slightly more spacious
     width: 180,
+    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)", // Subtle depth
+    fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+    transition: "box-shadow 0.2s ease, transform 0.2s ease",
   },
   feminine: {
-    backgroundColor: "#fce4ec",
-    color: "#000",
-    border: "1px solid #e91e63",
-    borderRadius: "8px",
-    padding: "10px 15px",
+    backgroundColor: "#f7e8f0", // Soft lavender blush
+    color: "#2c3e50", // Dark slate for better readability
+    border: "0.5px solid #c4a3b3", // Subtle dusty rose border
+    borderRadius: "10px", // Softer corners
+    padding: "12px 16px", // Slightly more spacious
     width: 180,
+    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)", // Subtle depth
+    fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+    transition: "box-shadow 0.2s ease, transform 0.2s ease",
   },
   coupleNode: {
-    backgroundColor: "#f5f5f5",
-    color: "#333",
-    border: "1px solid #ddd",
-    borderRadius: "8px",
-    padding: "10px",
-    width: 360,
+    backgroundColor: "#fafafa", // Clean off-white
+    color: "#2c3e50", // Dark slate for consistency
+    border: "0.5px solid #e0e0e0", // Very subtle light grey border
+    borderRadius: "10px", // Softer corners
+    padding: "12px",
+    width: 380,
     height: "auto",
+    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)", // Subtle depth
+    fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+    transition: "box-shadow 0.2s ease, transform 0.2s ease",
   },
 };
 

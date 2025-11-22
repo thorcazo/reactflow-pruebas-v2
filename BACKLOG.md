@@ -23,11 +23,15 @@ Este documento rastrea las mejoras futuras, optimizaciones técnicas y posibles 
 - **[FEAT-005] Mejorar tipografia y posicion de elementos en la pizzara del arbol**
   - *Descripción*: Mejorar la tipografía y la posición de los elementos en la pizarra del árbol.Tipo OpenSans. Tamaño de fuente adecuado
   - *Prioridad*: Baja
+  - *Estado*: **Completado**. Se implementó la fuente Open Sans, se optimizaron los tamaños de fuente (16px para nombres, 13px para detalles), se mejoró el espaciado y la jerarquía visual.
 
 - **[FEAT-006] Mejorar visual. Minimalista**
   - *Descripción*: Mejorar la visualidad del árbol. Minimalista. Con colores mas elegantes.  
   - *Prioridad*: Baja
 
+- **[FEAT-007] Modo oscuro**
+  - *Descripción*: Implementar un modo oscuro para la interfaz.
+  - *Prioridad*: Baja
 
 ## 🎨 Experiencia de Usuario (UX/UI)
 

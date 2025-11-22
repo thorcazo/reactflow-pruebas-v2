@@ -47,6 +47,24 @@ function App() {
   const [useStressTest, setUseStressTest] = useState(false);
   const currentFamilyData = useStressTest ? familiaStressTest : familiaData;
 
+  // Dark mode state management
+  const [darkMode, setDarkMode] = useState(() => {
+    // Check localStorage for saved preference
+    const savedMode = localStorage.getItem('darkMode');
+    return savedMode === 'true';
+  });
+
+  // Effect to apply dark mode class to document and save preference
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('darkMode', darkMode.toString());
+  }, [darkMode]);
+
+
   // Cargar posiciones guardadas al iniciar la aplicación
   useEffect(() => {
     // Solo cargar posiciones guardadas si estamos en modo manual
@@ -184,14 +202,19 @@ function App() {
     const notification = document.createElement('div');
     notification.textContent = `¡Posición del nodo ${movedNode.id} guardada correctamente!`;
     notification.style.position = 'fixed';
-    notification.style.bottom = '70px';
+    notification.style.bottom = '90px';
     notification.style.left = '50%';
     notification.style.transform = 'translateX(-50%)';
-    notification.style.backgroundColor = 'rgba(0, 128, 0, 0.8)';
+    notification.style.backgroundColor = 'rgba(76, 175, 80, 0.95)';
     notification.style.color = 'white';
-    notification.style.padding = '10px 20px';
-    notification.style.borderRadius = '4px';
+    notification.style.padding = '12px 24px';
+    notification.style.borderRadius = '8px';
     notification.style.zIndex = '1000';
+    notification.style.fontFamily = "'Inter', sans-serif";
+    notification.style.fontSize = '14px';
+    notification.style.fontWeight = '500';
+    notification.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+    notification.style.backdropFilter = 'blur(10px)';
 
     document.body.appendChild(notification);
 
@@ -227,14 +250,19 @@ function App() {
     const notification = document.createElement('div');
     notification.textContent = '¡Posiciones restablecidas a valores iniciales!';
     notification.style.position = 'fixed';
-    notification.style.bottom = '70px';
+    notification.style.bottom = '90px';
     notification.style.left = '50%';
     notification.style.transform = 'translateX(-50%)';
-    notification.style.backgroundColor = 'rgba(220, 53, 69, 0.8)';
+    notification.style.backgroundColor = 'rgba(244, 67, 54, 0.95)';
     notification.style.color = 'white';
-    notification.style.padding = '10px 20px';
-    notification.style.borderRadius = '4px';
+    notification.style.padding = '12px 24px';
+    notification.style.borderRadius = '8px';
     notification.style.zIndex = '1000';
+    notification.style.fontFamily = "'Inter', sans-serif";
+    notification.style.fontSize = '14px';
+    notification.style.fontWeight = '500';
+    notification.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+    notification.style.backdropFilter = 'blur(10px)';
 
     document.body.appendChild(notification);
 
@@ -244,8 +272,18 @@ function App() {
   }, [setNodes, setEdges, currentFamilyData]);
 
   return (
-    <div style={{ width: "100%", height: "100vh", position: "relative" }}>
-      <h1 style={{ position: "absolute", top: 60, left: 20, zIndex: 10 }}>
+    <div style={{ width: "100%", height: "100vh", position: "relative" }} className={darkMode ? 'dark' : ''}>
+      <h1 style={{
+        position: "absolute",
+        top: 60,
+        left: 20,
+        zIndex: 10,
+        fontFamily: "'Inter', sans-serif",
+        fontSize: "24px",
+        fontWeight: 600,
+        color: darkMode ? '#e2e8f0' : '#2c3e50',
+        letterSpacing: "-0.5px"
+      }}>
         Relaciones Familiares - Cónyuges
       </h1>
 
@@ -256,14 +294,16 @@ function App() {
           top: '20px',
           left: '20px',
           zIndex: 4,
-          padding: '10px',
-          background: 'white',
-          border: '1px solid #ccc',
-          borderRadius: '5px',
+          padding: '12px 14px',
+          background: 'rgba(255, 255, 255, 0.95)',
+          border: '0.5px solid #e0e0e0',
+          borderRadius: '8px',
           display: 'flex',
           alignItems: 'center',
           gap: '10px',
-          fontSize: '14px'
+          fontSize: '14px',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+          backdropFilter: 'blur(10px)'
         }}
       >
         <span>Modo:</span>
@@ -308,15 +348,17 @@ function App() {
           top: '70px',
           left: '20px',
           zIndex: 4,
-          padding: '10px',
-          background: useStressTest ? '#fff3cd' : 'white',
-          border: useStressTest ? '2px solid #ff9800' : '1px solid #ccc',
-          borderRadius: '5px',
+          padding: '12px 14px',
+          background: useStressTest ? 'rgba(255, 243, 205, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+          border: useStressTest ? '1px solid #ff9800' : '0.5px solid #e0e0e0',
+          borderRadius: '8px',
           display: 'flex',
           alignItems: 'center',
           gap: '10px',
           fontSize: '14px',
-          fontWeight: useStressTest ? 'bold' : 'normal'
+          fontWeight: useStressTest ? 600 : 'normal',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+          backdropFilter: 'blur(10px)'
         }}
       >
         <span>Dataset:</span>
@@ -329,19 +371,62 @@ function App() {
             setNodesMoved(false);
           }}
           style={{
-            padding: '5px 15px',
+            padding: '6px 16px',
             background: useStressTest ? '#ff9800' : '#4CAF50',
             color: 'white',
             border: 'none',
-            borderRadius: '4px',
+            borderRadius: '6px',
             cursor: 'pointer',
-            fontSize: '13px'
+            fontSize: '13px',
+            fontWeight: 500,
+            transition: 'transform 0.2s ease, box-shadow 0.2s ease',
           }}
         >
           {useStressTest ? '⚠️ Stress Test (50 personas)' : '✓ Normal (11 personas)'}
         </button>
       </div>
 
+      {/* Dark Mode Toggle */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '120px',
+          left: '20px',
+          zIndex: 4,
+          padding: '12px 14px',
+          background: darkMode ? 'rgba(45, 55, 72, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+          border: darkMode ? '0.5px solid #4a5568' : '0.5px solid #e0e0e0',
+          borderRadius: '8px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+          fontSize: '14px',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+          backdropFilter: 'blur(10px)',
+          color: darkMode ? '#e2e8f0' : '#333'
+        }}
+      >
+        <span>Tema:</span>
+        <button
+          onClick={() => setDarkMode(!darkMode)}
+          style={{
+            padding: '6px 16px',
+            background: darkMode ? '#4a5568' : '#6366f1',
+            color: 'white',
+            border: 'none',
+            borderRadius: '6px',
+            cursor: 'pointer',
+            fontSize: '13px',
+            fontWeight: 500,
+            transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          {darkMode ? '☀️ Claro' : '🌙 Oscuro'}
+        </button>
+      </div>
 
       <ReactFlow
         style={{ width: "100%", height: "calc(100vh - 20px)" }}
@@ -354,14 +439,35 @@ function App() {
         snapToGrid={true}
         snapGrid={[120, 50]}
         fitView
+        defaultEdgeOptions={{
+          style: {
+            strokeWidth: 1.5,
+            stroke: '#bdbdbd',
+            opacity: 0.6
+          },
+          markerEnd: {
+            type: 'arrow',
+            width: 12,
+            height: 12,
+            color: '#bdbdbd'
+          }
+        }}
       >
         <Controls />
         <MiniMap />
-        <Background variant="grid" gap={20} size={1} />
+        <Background variant="dots" gap={20} size={1} color="#e0e0e0" />
 
         {/* Panel de leyenda */}
         <Panel position="top-right">
-          <div style={{ background: "white", padding: 10, borderRadius: 5 }}>
+          <div style={{
+            background: "rgba(255, 255, 255, 0.95)",
+            padding: "12px 16px",
+            borderRadius: "8px",
+            border: "0.5px solid #e0e0e0",
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",
+            backdropFilter: "blur(10px)",
+            fontSize: "14px"
+          }}>
             <div>
               <span
                 style={{
@@ -391,7 +497,14 @@ function App() {
 
         {/* Panel de control - solo visible cuando se ha movido algún nodo y estamos en modo manual */}
         {nodesMoved && manualMode && (
-          <Panel position="bottom-center" style={{ background: 'white', padding: '10px', borderRadius: '5px', boxShadow: '0 2px 5px rgba(0,0,0,0.15)' }}>
+          <Panel position="bottom-center" style={{
+            background: 'rgba(255, 255, 255, 0.95)',
+            padding: '12px 16px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+            border: '0.5px solid #e0e0e0',
+            backdropFilter: 'blur(10px)'
+          }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <button
                 onClick={saveNodePositions}

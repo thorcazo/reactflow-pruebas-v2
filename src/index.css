@@ -1,0 +1,73 @@
+/* Import modern font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* CSS Custom Properties for Theming */
+:root {
+    /* Color Palette - Minimalist & Elegant */
+    --color-masculine-bg: #e8eef7;
+    --color-masculine-border: #8fa3c4;
+    --color-feminine-bg: #f7e8f0;
+    --color-feminine-border: #c4a3b3;
+    --color-couple-bg: #fafafa;
+    --color-couple-border: #e0e0e0;
+    --color-handle: #9e9e9e;
+    --color-edge: #bdbdbd;
+
+    /* Typography */
+    --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Shadows */
+    --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* Tailwind CSS directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Typography and Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode styles */
+.dark body {
+    background-color: #1a202c;
+    color: #e2e8f0;
+}
+
+#root {
+    width: 100%;
+    height: 100vh;
+}
+
+/* Improve text rendering */
+p,
+span,
+div {
+    font-feature-settings: 'kern' 1;
+    text-rendering: optimizeLegibility;
+}
+
+strong {
+    font-weight: var(--font-weight-semibold);
+}

@@ -9,40 +9,56 @@ export const CoupleNode = ({ data }) => {
   return (
     <div style={nodeStyles.coupleNode}>
       {/* Handle superior para conexión con padres */}
-      <Handle 
-        type="target" 
-        position="top" 
-        id="top" 
-        style={{ background: '#555', width: '12px', height: '12px' }} 
+      <Handle
+        type="target"
+        position="top"
+        id="top"
+        style={{ background: '#9e9e9e', width: '10px', height: '10px', border: 'none' }}
       />
-      
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div style={{ ...nodeStyles.feminine, flex: 1, marginRight: "5px" }}>
-          <div>
-            <strong>
-              {wife.nombre} {wife.apellido1}
-            </strong>
+
+      <div style={{ display: "flex", justifyContent: "space-between", gap: "10px" }}>
+        <div style={{
+          ...nodeStyles.feminine,
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '6px'
+        }}>
+          <div style={{ fontSize: '16px', fontWeight: 600, lineHeight: '1.3' }}>
+            {wife.nombre} {wife.apellido1}
           </div>
-          <div>Género: {wife.genero}</div>
-          <div>Nac: {wife.fechaNacimiento}</div>
+          <div style={{ fontSize: '13px', color: '#555' }}>
+            {wife.genero}
+          </div>
+          <div style={{ fontSize: '13px', color: '#555' }}>
+            Nac: {wife.fechaNacimiento}
+          </div>
         </div>
-        <div style={{ ...nodeStyles.masculine, flex: 1, marginLeft: "5px" }}>
-          <div>
-            <strong>
-              {husband.nombre} {husband.apellido1}
-            </strong>
+        <div style={{
+          ...nodeStyles.masculine,
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '6px'
+        }}>
+          <div style={{ fontSize: '16px', fontWeight: 600, lineHeight: '1.3' }}>
+            {husband.nombre} {husband.apellido1}
           </div>
-          <div>Género: {husband.genero}</div>
-          <div>Nac: {husband.fechaNacimiento}</div>
+          <div style={{ fontSize: '13px', color: '#555' }}>
+            {husband.genero}
+          </div>
+          <div style={{ fontSize: '13px', color: '#555' }}>
+            Nac: {husband.fechaNacimiento}
+          </div>
         </div>
       </div>
-      
+
       {/* Handle inferior para conexión con hijos */}
-      <Handle 
-        type="source" 
-        position="bottom" 
-        id="bottom" 
-        style={{ background: '#555', width: '12px', height: '12px' }} 
+      <Handle
+        type="source"
+        position="bottom"
+        id="bottom"
+        style={{ background: '#9e9e9e', width: '10px', height: '10px', border: 'none' }}
       />
     </div>
   );
@@ -59,27 +75,31 @@ export const PersonNode = ({ data }) => {
       }
     >
       {/* Handle superior para conexión con padres */}
-      <Handle 
-        type="target" 
-        position="top" 
-        id="top" 
-        style={{ background: '#555', width: '12px', height: '12px' }} 
+      <Handle
+        type="target"
+        position="top"
+        id="top"
+        style={{ background: '#9e9e9e', width: '10px', height: '10px', border: 'none' }}
       />
-      
-      <div>
-        <strong>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+        <div style={{ fontSize: '16px', fontWeight: 600, lineHeight: '1.3' }}>
           {data.nombre} {data.apellido1}
-        </strong>
+        </div>
+        <div style={{ fontSize: '13px', color: '#555' }}>
+          {data.genero}
+        </div>
+        <div style={{ fontSize: '13px', color: '#555' }}>
+          Nac: {data.fechaNacimiento}
+        </div>
       </div>
-      <div>Género: {data.genero}</div>
-      <div>Nac: {data.fechaNacimiento}</div>
-      
+
       {/* Handle inferior para conexión con hijos */}
-      <Handle 
-        type="source" 
-        position="bottom" 
-        id="bottom" 
-        style={{ background: '#555', width: '12px', height: '12px' }} 
+      <Handle
+        type="source"
+        position="bottom"
+        id="bottom"
+        style={{ background: '#9e9e9e', width: '10px', height: '10px', border: 'none' }}
       />
     </div>
   );
